@@ -9,17 +9,19 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.domain.Vehicle;
-import com.example.demo.services.VehicleService;
+import com.example.demo.domain.Body;
+import com.example.demo.services.BodyService;
 
 @RestController
-public class VehicleController {
+@RequestMapping("/body")
+public class BodyController {
 
-	private VehicleService service;
+	private BodyService service;
 
-	public VehicleController(VehicleService service) {
+	public BodyController(BodyService service) {
 		super();
 		this.service = service;
 	}
@@ -35,33 +37,23 @@ public class VehicleController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<Vehicle> createVehicle(@RequestBody Vehicle newVehicle) {
-		return this.service.createVehicle(newVehicle);
+	public ResponseEntity<Body> createBody(@RequestBody Body newBody) {
+		return this.service.createBody(newBody);
 	}
 
 	@GetMapping("/get")
-	public List<Vehicle> getVehicles() {
-		return this.service.getVehicles();
+	public List<Body> getbodies() {
+		return this.service.getBodies();
 	}
 
 	@GetMapping("/get/{id}")
-	public ResponseEntity<Vehicle> getVehicle(@PathVariable int id) {
-		return this.service.getVehicle(id);
+	public ResponseEntity<Body> getBody(@PathVariable int id) {
+		return this.service.getBody(id);
 	}
 
-//	@PutMapping("/update/{id}")
-//	public Vehicle updateVehicle(@PathVariable int id, @RequestBody Vehicle newVehicle) {
-//		return this.service.updateVehicle(id, newVehicle);
-//	}
-//
-//	@DeleteMapping("/remove/{id}")
-//	public Vehicle remove(@PathVariable int id) {
-//		return this.service.remove(id);
-//	}
-
 	@PatchMapping("/update/{id}")
-	public ResponseEntity<Vehicle> updateVehicle(@PathVariable int id, @RequestBody Vehicle newVehicle) {
-		return this.service.updateVehicle(id, newVehicle);
+	public ResponseEntity<Body> updateBody(@PathVariable int id, @RequestBody Body newBody) {
+		return this.service.updateBody(id, newBody);
 	}
 
 	@DeleteMapping("/remove/{id}")
